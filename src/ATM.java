@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -6,32 +7,48 @@ import java.util.Scanner;
 public class ATM {
     public static void run() throws Exception {
         System.out.println("Welcome to City Bank");
-        System.out.println("What is your name?");
 
-        Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
-        if (name.equals(""))
-            throw new Exception("Invalid name.");
+        HashMap<String, Double> accounts = new HashMap();
 
-        System.out.println("[1] Check my balance");
-        System.out.println("[2] Withdraw Funds");
-        System.out.println("[3] Cancel ");
-        String action = scanner.nextLine();
-        int actionNum = Integer.valueOf(action);
-        if (actionNum == 1) {
-            System.out.println("Your balance is $200");
-        } else if (actionNum == 2) {
-            System.out.println("How much would you like to withdraw?");
-            String withdraw = scanner.nextLine();
-            int withdrawNum = Integer.valueOf(withdraw);
-            if (withdrawNum > 100) {
-                throw new Exception("Not enough funds");
+        while (true) {
+            System.out.println("What is your name?");
+            Scanner scanner = new Scanner(System.in);
+            String name = scanner.nextLine();
+            if (name.equals(""))
+                throw new Exception("Invalid name.");
 
-            } else if (withdrawNum < 100) {
-                System.out.println("Please take your money");
+            if (!accounts.containsKey(name)) {
+                System.out.println("Do you want to make a new account?");
+                String s = scanner.nextLine();
+                if (s.equals("yes")) {
+                    accounts.put(name, 100.0);
+                } else {
+                    System.exit(0);
+                }
             }
-        } else if (actionNum == 3){
-            System.out.println("Thank you and please come again");
+
+            double balance = accounts.get(name);
+
+            System.out.println("[1] Check my balance");
+            System.out.println("[2] Withdraw Funds");
+            System.out.println("[3] Cancel ");
+            String action = scanner.nextLine();
+            int actionNum = Integer.valueOf(action);
+            if (actionNum == 1) {
+                System.out.println("Your balance is $200");
+            } else if (actionNum == 2) {
+                System.out.println("How much would you like to withdraw?");
+                String withdraw = scanner.nextLine();
+                int withdrawNum = Integer.valueOf(withdraw);
+                if (withdrawNum > 100) {
+                    throw new Exception("Not enough funds");
+
+                } else if (withdrawNum < 100) {
+                    System.out.println("Please take your money");
+                }
+            } else if (actionNum == 3) {
+                System.out.println("Thank you and please come again");
+            }
         }
     }
 }
