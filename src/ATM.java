@@ -32,6 +32,7 @@ public class ATM {
             System.out.println("[1] Check my balance");
             System.out.println("[2] Withdraw Funds");
             System.out.println("[3] Cancel ");
+            System.out.println("[4] Delete my account");
             String action = scanner.nextLine();
             int actionNum = Integer.valueOf(action);
             if (actionNum == 1) {
