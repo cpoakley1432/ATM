@@ -5,10 +5,11 @@ import java.util.Scanner;
  * Created by cameronoakley on 10/9/15.
  */
 public class ATM {
-    public static void run() throws Exception {
+    public static void main(String[] args) throws Exception {
         System.out.println("Welcome to City Bank");
 
         HashMap<String, Double> accounts = new HashMap();
+
 
         while (true) {
             System.out.println("What is your name?");
@@ -21,7 +22,7 @@ public class ATM {
                 System.out.println("Do you want to make a new account?");
                 String s = scanner.nextLine();
                 if (s.equals("yes")) {
-                    accounts.put(name, 100.0);
+                    accounts.put(name, 200.0);
                 } else {
                     System.exit(0);
                 }
@@ -36,7 +37,7 @@ public class ATM {
             String action = scanner.nextLine();
             int actionNum = Integer.valueOf(action);
             if (actionNum == 1) {
-                System.out.println("Your balance is $200");
+                System.out.println("Balance is $" + accounts.get(name));
             } else if (actionNum == 2) {
                 System.out.println("How much would you like to withdraw?");
                 String withdraw = scanner.nextLine();
@@ -49,7 +50,10 @@ public class ATM {
                 }
             } else if (actionNum == 3) {
                 System.out.println("Thank you and please come again");
+            } else if (actionNum == 4){
+                System.out.println(" Your account has been deleted");
             }
         }
     }
 }
+
